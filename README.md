@@ -1,5 +1,6 @@
 # inspectra
-Run yara rules on Chrome extension source code, extract URLs & source code using Chrome extension IDs
+- Run yara rules on Chrome extension source code
+- Extract URLs & source code using Chrome extension IDs
 
 ### Installation
 Clone the git repo - `git clone https://github.com/pratinavchandra/inspectra.git`
