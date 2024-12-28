@@ -11,6 +11,9 @@ Navigate to cloned directory - `cd inspectra`
 Build docker image - `docker build -t inspectra .`
 <br>
 <br>
+Add yara rules to the `yara_rules` folder in the `inspectra` directory or mount a local directory containing yara rules
+<br>
+<br>
 Run analysis - `docker run -v ~/inspectra/yara_rules:/app/yara_rules inspectra <extension ID>`
 <br>
 <br>
