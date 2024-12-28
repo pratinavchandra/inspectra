@@ -8,12 +8,30 @@ import re
 import yara
 import argparse
 
+nacl_arch = "x86-64" #Change as needed
+
+def get_latest_chrome_version():
+    url = 'https://chromiumdash.appspot.com/fetch_releases?channel=Stable&platform=Windows'
+    response = requests.get(url)
+    data = json.loads(response.text)
+    
+    if data and len(data) > 0:
+        return data[0]['version']
+    
+    return None
 def download_extension(extension_id, output_dir):
     """Downloads a Chrome extension CRX file."""
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-
-    crx_url = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=91.0.4472.124&acceptformat=crx3&x=id%3D{extension_id}%26uc"
+    chrome_version = get_latest_chrome_version()
+    crx_url = (
+        "https://clients2.google.com/service/update2/crx?"
+        "response=redirect&"
+        f"prodversion={chrome_version}&"
+        f"x=id%3D{extension_id}%26installsource%3Dondemand%26uc&"
+        f"nacl_arch={nacl_arch}&"
+        "acceptformat=crx2,crx3"
+    )
     crx_path = os.path.join(output_dir, f"{extension_id}.crx")
 
     response = requests.get(crx_url, stream=True)
