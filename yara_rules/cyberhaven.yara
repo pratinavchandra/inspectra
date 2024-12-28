@@ -1,6 +1,7 @@
 rule Cyberhaven_Extension_Pattern {
     meta:
         description = "Detects suspicious messages seen in the Cyberhaven attack"
+        reference = "https://secureannex.com/blog/cyberhaven-extension-compromise"
         severity = "high"
 
     strings:
