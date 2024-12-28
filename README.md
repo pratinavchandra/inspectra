@@ -39,7 +39,14 @@ Follow these steps to set up Inspectra:
 ---
 
 ## 🛠️ Usage
+```
+   inspectra.py [-h] [--code] extension_ids [extension_ids ...]
 
+   positional arguments:
+      extension_ids  List of Chrome extension IDs to process.
+   optional arguments:
+      --code         Print source code if specified.
+   ```
 ### Analyze Chrome Extensions
 Run the following command to analyze a Chrome extension by its ID:
 ```bash
