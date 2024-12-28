@@ -11,14 +11,15 @@ import argparse
 nacl_arch = "x86-64" #Change as needed
 
 def get_latest_chrome_version():
+    """Gets the latest chrome version"""
     url = 'https://chromiumdash.appspot.com/fetch_releases?channel=Stable&platform=Windows'
     response = requests.get(url)
     data = json.loads(response.text)
     
     if data and len(data) > 0:
         return data[0]['version']
-    
     return None
+    
 def download_extension(extension_id, output_dir):
     """Downloads a Chrome extension CRX file."""
     if not os.path.exists(output_dir):
@@ -67,7 +68,7 @@ def print_manifest_fields(manifest_path):
             with open(manifest_path, 'r', errors='ignore') as f:
                 manifest = json.load(f)
                 
-                # Print the requested fields
+                # Print relevant fields from manifest.json
                 print("\n--- manifest.json Fields ---")
                 print(f"manifest_version: {manifest.get('manifest_version', 'N/A')}")
                 print(f"permissions: {manifest.get('permissions', 'N/A')}")
@@ -82,7 +83,7 @@ def print_manifest_fields(manifest_path):
 
 def extract_urls(text):
     """Extracts all valid URLs from the given text."""
-    # Refined URL regex to match valid http(s) URLs with proper domains and optional paths or queries
+    # Regex to match valid http(s) URLs with proper domains and optional paths or queries
     URL_PATTERN = re.compile(r'https?://[a-zA-Z0-9.-]+(?:/[^\s,]*)?')
     
     # Extract URLs
@@ -98,7 +99,7 @@ def print_urls_from_code(source_dir):
     seen_urls = set()  # Create a set to store unique URLs
     for root, _, files in os.walk(source_dir):
         for file in files:
-            if file.endswith(('.js', '.json', '.html', '.css', '.txt')):  # Filter for code files
+            if file.endswith(('.js', '.json', '.html', '.css', '.txt')):  # Filter for relevant file formats
                 file_path = os.path.join(root, file)
                 with open(file_path, 'r', errors='ignore') as f:
                     content = f.read()
@@ -116,14 +117,14 @@ def run_yara_rules(source_dir, yara_rules_dir):
     """Runs YARA rules against the extension code."""
     print("\n---- YARA rule matches ----")
     
-    # Compile YARA rules, now considering both .yara and .yar extensions
+    # Compile YARA rules, considering both .yara and .yar extensions
     yara_rules = yara.compile(filepaths={rule_name: os.path.join(yara_rules_dir, rule_name) 
                                         for rule_name in os.listdir(yara_rules_dir) 
                                         if rule_name.endswith(('.yara', '.yar'))})
     
     for root, _, files in os.walk(source_dir):
         for file in files:
-            if file.endswith(('.js', '.json', '.html', '.css', '.txt')):  # Filter for code files
+            if file.endswith(('.js', '.json', '.html', '.css', '.txt')):  # Filter for relevant file formats
                 file_path = os.path.join(root, file)
                 with open(file_path, 'r', errors='ignore') as f:
                     content = f.read()
