@@ -159,6 +159,11 @@ def main():
     
     args = parser.parse_args()
 
+    # Check if no flags are passed
+    if not args.code and not args.scan:
+        print("No analysis options provided. Please use --code to print source code or --scan to perform analysis.")
+        return
+
     output_dir = "./chrome_extension"
     yara_rules_dir = "/app/yara_rules"  # Mounted folder for YARA rules
 
@@ -180,15 +185,16 @@ def main():
             if args.code:
                 print_source_code(source_dir)
 
-            # Print manifest fields
-            manifest_path = os.path.join(source_dir, "manifest.json")
-            print_manifest_fields(manifest_path)
+            if args.scan:
+                # Print manifest fields
+                manifest_path = os.path.join(source_dir, "manifest.json")
+                print_manifest_fields(manifest_path)
 
-            # Print URLs found in the code
-            print_urls_from_code(source_dir)
+                # Print URLs found in the code
+                print_urls_from_code(source_dir)
 
-            # Run YARA rules
-            run_yara_rules(source_dir, yara_rules_dir)
+                # Run YARA rules
+                run_yara_rules(source_dir, yara_rules_dir)
 
         finally:
             # Clean up files
