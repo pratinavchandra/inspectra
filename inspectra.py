@@ -156,7 +156,7 @@ def main():
     parser = argparse.ArgumentParser(description="Download, extract, and analyze Chrome extensions.")
     parser.add_argument('extension_ids', nargs='+', help="List of Chrome extension IDs to process.")
     parser.add_argument('--code', action='store_true', help="Print source code if specified.")
-    
+    parser.add_argument('--scan', action='store_true', help="Perform analysis on the extension if specified.")
     args = parser.parse_args()
 
     # Check if no flags are passed
