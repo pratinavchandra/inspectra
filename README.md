@@ -50,18 +50,20 @@ Follow these steps to set up Inspectra:
 ### Analyze Chrome Extensions
 Run the following command to analyze a Chrome extension by its ID:
 ```bash
-docker run -v ~/inspectra/yara_rules:/app/yara_rules inspectra <extension ID>
+docker run -v ~/inspectra/yara_rules:/app/yara_rules inspectra <extension ID> --scan
 ```
 
-![Inspectra Analysis](https://github.com/user-attachments/assets/9ce3e7a3-4587-44bc-9bd5-9536dfc1748f)
+<img width="887" alt="image" src="https://github.com/user-attachments/assets/8aae0d04-2477-4150-8225-2618b356a6a3" />
 
-### Print Source Code to Stdout
+
+### Get Raw Source Code to Stdout
 To display the source code of the extension, use the `--code` flag:
 ```bash
 docker run -v /localpath/to/yara_rules:/app/yara_rules inspectra <extension ID> --code
 ```
 
-![Source Code Output](https://github.com/user-attachments/assets/abeba0b9-f0ce-4548-99eb-b523b6e5c8ef)
+<img width="887" alt="image" src="https://github.com/user-attachments/assets/d601c473-8172-4c64-b3d0-476116c68263" />
+
 
 ---
 
