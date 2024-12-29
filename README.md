@@ -5,13 +5,11 @@ Inspectra is a powerful tool for analyzing Chrome extensions with minimal setup.
 - Run YARA rules on Chrome extension source code.
 - Extract URLs and source code using Chrome extension IDs.
 
----
 
 ## 🚀 Features
 - **Customizable YARA Rules**: Add your own YARA rules for tailored analysis.
 - **Raw Source Code**: Extract and print extension source code to stdout for quick analysis.
 
----
 
 ## 📥 Installation
 
