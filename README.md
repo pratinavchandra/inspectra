@@ -34,7 +34,6 @@ Follow these steps to set up Inspectra:
    - Place your YARA rules in the `yara_rules` folder within the `inspectra` directory.
    - Alternatively, mount a local directory containing YARA rules.
 
----
 
 ## 🛠️ Usage
 ```
@@ -63,12 +62,8 @@ docker run -v /localpath/to/yara_rules:/app/yara_rules inspectra <extension ID> 
 <img width="887" alt="image" src="https://github.com/user-attachments/assets/d601c473-8172-4c64-b3d0-476116c68263" />
 
 
----
-
 ## 🤝 Contributing
 Contributions are welcome! Feel free to submit issues or pull requests to improve Inspectra.
 Building a library of yara rules tailored to Chrome extensions would be awesome!
-
----
 
 Happy Inspecting! 🔍
